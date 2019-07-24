@@ -1,13 +1,15 @@
 import React, {useState} from "react";
 
-export default function SignupForm(){
-    const [user, setUser]= useState({name: "", role: "", email: ""})
+export default function SignupForm({addTeamMember}){
+    const [member, setMember]= useState({name: "", role: "", email: ""})
 
     function handleChange(event){
-        const updatedUser = {...user, [event.target.name]: event.target.value};
-        setUser(updatedUser);
+        const updatedUser = {...member, [event.target.name]: event.target.value};
+        setMember(updatedUser);
     };
     function handleSubmit(event){
+        const addMember = addTeamMember
+        addMember(member)
         event.preventDefault();
     }
 
@@ -22,7 +24,7 @@ export default function SignupForm(){
                             type="text"
                             name="name"
                             placeholder="enter your name"
-                            value={user.name}
+                            value={member.name}
                             onChange={handleChange}
                         />
                     </label>
@@ -34,7 +36,7 @@ export default function SignupForm(){
                             type="text"
                             name="role"
                             placeholder="enter your role"
-                            value={user.role}
+                            value={member.role}
                             onChange={handleChange}
                         />
                     </label>
@@ -46,7 +48,7 @@ export default function SignupForm(){
                             type="email"
                             name="email"
                             placeholder="enter your email"
-                            value={user.email}
+                            value={member.email}
                             onChange={handleChange}
                         />
                     </label>
